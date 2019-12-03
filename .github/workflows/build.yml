@@ -8,15 +8,15 @@ on:
 jobs:
   build:
 
-    runs-on: macOS-latest
-    
+    runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v1
     - name: Build Samples with Java
       run: |
         cd Sample
         ./gradlew :java-sample:assembleDebug
-    
+
     - name: Build Samples with Kotlin
       run: |
         cd Sample
