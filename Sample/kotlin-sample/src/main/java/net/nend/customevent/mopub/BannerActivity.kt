@@ -38,7 +38,7 @@ class BannerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_banner)
 
         mopubView = findViewById<MoPubView>(R.id.adview).apply {
-            adUnitId = MOPUB_AD_UNIT_ID
+            setAdUnitId(MOPUB_AD_UNIT_ID)
             bannerAdListener = adListener
             loadAd()
         }

@@ -11,6 +11,8 @@ import com.mopub.common.MoPub;
 import com.mopub.common.SdkConfiguration;
 import com.mopub.common.SdkInitializationListener;
 
+import net.nend.android.mopub.customevent.NendAdapterConfiguration;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,9 @@ public class SelectAdTypeActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_ad_type);
 
-        SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder(MOPUB_AD_UNIT_ID).build();
+        SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder(MOPUB_AD_UNIT_ID)
+                .withAdditionalNetwork(NendAdapterConfiguration.class.getName())
+                .build();
         MoPub.initializeSdk(this, sdkConfiguration, initMoPubSdkListener());
     }
 
