@@ -5,6 +5,5 @@
 ## Overview
 nendSDKのAndroid版MoPubカスタムイベントのサンプルです。  
 
-
 ## Usage
 詳細は[Wiki](https://github.com/fan-ADN/nendSDK-Android-MoPub-CustomEvent/wiki)をご確認ください。
