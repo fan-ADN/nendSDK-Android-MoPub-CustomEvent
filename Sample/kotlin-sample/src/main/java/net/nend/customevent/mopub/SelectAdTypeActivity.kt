@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.mopub.common.MoPub
 import com.mopub.common.SdkConfiguration
 import com.mopub.common.SdkInitializationListener
+import com.mopub.common.logging.MoPubLog
 import net.nend.android.mopub.customevent.NendAdapterConfiguration
 
 class SelectAdTypeActivity : ListActivity() {
@@ -44,6 +45,7 @@ class SelectAdTypeActivity : ListActivity() {
 
         val sdkConfiguration = SdkConfiguration.Builder(MOPUB_AD_UNIT_ID)
                 .withAdditionalNetwork(NendAdapterConfiguration::class.java.name)
+                .withLogLevel(MoPubLog.LogLevel.INFO)
                 .build()
         MoPub.initializeSdk(this, sdkConfiguration, initMoPubSdkListener())
     }
