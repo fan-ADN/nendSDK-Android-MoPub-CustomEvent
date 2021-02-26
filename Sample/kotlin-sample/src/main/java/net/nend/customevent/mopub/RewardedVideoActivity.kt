@@ -11,8 +11,8 @@ import android.view.View
 import android.widget.Toast
 import com.mopub.common.MoPubReward
 import com.mopub.mobileads.MoPubErrorCode
-import com.mopub.mobileads.MoPubRewardedVideoListener
-import com.mopub.mobileads.MoPubRewardedVideos
+import com.mopub.mobileads.MoPubRewardedAdListener
+import com.mopub.mobileads.MoPubRewardedAds
 import net.nend.android.mopub.customevent.NendMediationSettings
 
 /*
@@ -20,33 +20,33 @@ import net.nend.android.mopub.customevent.NendMediationSettings
 */
 class RewardedVideoActivity : AppCompatActivity() {
 
-    private val mopubRewardedListener = object : MoPubRewardedVideoListener {
-        override fun onRewardedVideoLoadSuccess(adUnitId: String) {
+    private val mopubRewardedListener = object : MoPubRewardedAdListener {
+        override fun onRewardedAdLoadSuccess(adUnitId: String) {
             toast("Load Success adUnitId: $adUnitId", Toast.LENGTH_SHORT)
         }
 
-        override fun onRewardedVideoLoadFailure(adUnitId: String, errorCode: MoPubErrorCode) {
+        override fun onRewardedAdLoadFailure(adUnitId: String, errorCode: MoPubErrorCode) {
             toast("Load Failure adUnitId: $adUnitId\n errorCode: $errorCode", Toast.LENGTH_LONG)
         }
 
-        override fun onRewardedVideoStarted(adUnitId: String) {
-            toast("Video Started adUnitId: $adUnitId", Toast.LENGTH_SHORT)
+        override fun onRewardedAdStarted(adUnitId: String) {
+            toast("Reward ad started adUnitId: $adUnitId", Toast.LENGTH_SHORT)
         }
 
-        override fun onRewardedVideoPlaybackError(adUnitId: String, errorCode: MoPubErrorCode) {
-            toast("Video PlaybackError adUnitId: $adUnitId\n errorCode: $errorCode", Toast.LENGTH_LONG)
+        override fun onRewardedAdShowError(adUnitId: String, errorCode: MoPubErrorCode) {
+            toast("Rewarded ad show error adUnitId: $adUnitId\n errorCode: $errorCode", Toast.LENGTH_LONG)
         }
 
-        override fun onRewardedVideoClicked(adUnitId: String) {
+        override fun onRewardedAdClicked(adUnitId: String) {
             toast("Ad Clicked adUnitId: $adUnitId", Toast.LENGTH_SHORT)
         }
 
-        override fun onRewardedVideoClosed(adUnitId: String) {
+        override fun onRewardedAdClosed(adUnitId: String) {
             toast("Ad Closed adUnitId: $adUnitId", Toast.LENGTH_SHORT)
         }
 
-        override fun onRewardedVideoCompleted(adUnitIds: MutableSet<String>, reward: MoPubReward) {
-            toast("Video Completed adUnitId: $adUnitIds \n Reward_label: ${reward.label} \n Reward_amount: ${reward.amount}", Toast.LENGTH_LONG)
+        override fun onRewardedAdCompleted(adUnitIds: Set<String?>, reward: MoPubReward) {
+            toast("Rewarded ad completed adUnitId: $adUnitIds \n Reward_label: ${reward.label} \n Reward_amount: ${reward.amount}", Toast.LENGTH_LONG)
         }
     }
 
@@ -57,7 +57,7 @@ class RewardedVideoActivity : AppCompatActivity() {
         // If you use location in your app, but would like to disable location passing.
 //        MoPub.setLocationAwareness(MoPub.LocationAwareness.DISABLED)
 
-        MoPubRewardedVideos.setRewardedVideoListener(mopubRewardedListener)
+        MoPubRewardedAds.setRewardedAdListener(mopubRewardedListener)
 
         findViewById<View>(R.id.bt_load).setOnClickListener {
             val settings = NendMediationSettings.Builder()
@@ -70,12 +70,12 @@ class RewardedVideoActivity : AppCompatActivity() {
                     .addCustomFeature("customStringParam", "test")
                     .addCustomFeature("customBooleanParam", true)
                     .build()
-            MoPubRewardedVideos.loadRewardedVideo(MOPUB_AD_UNIT_ID, settings)
+            MoPubRewardedAds.loadRewardedAd(MOPUB_AD_UNIT_ID, settings)
         }
 
         findViewById<View>(R.id.bt_show).setOnClickListener {
-            if (MoPubRewardedVideos.hasRewardedVideo(MOPUB_AD_UNIT_ID)) {
-                MoPubRewardedVideos.showRewardedVideo(MOPUB_AD_UNIT_ID)
+            if (MoPubRewardedAds.hasRewardedAd(MOPUB_AD_UNIT_ID)) {
+                MoPubRewardedAds.showRewardedAd(MOPUB_AD_UNIT_ID)
             }
         }
     }

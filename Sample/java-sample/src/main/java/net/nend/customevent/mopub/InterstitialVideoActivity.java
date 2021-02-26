@@ -24,7 +24,7 @@ public class InterstitialVideoActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private MoPubInterstitial interstitial;
 
-    private MoPubInterstitial.InterstitialAdListener adListener = new MoPubInterstitial.InterstitialAdListener() {
+    private final MoPubInterstitial.InterstitialAdListener adListener = new MoPubInterstitial.InterstitialAdListener() {
         @Override
         public void onInterstitialLoaded(MoPubInterstitial interstitial) {
             showToast("Interstitial Load Success: " + interstitial, Toast.LENGTH_SHORT);
