@@ -5,5 +5,10 @@
 ## Overview
 nendSDKのAndroid版MoPubカスタムイベントのサンプルです。  
 
+## Requiment
+- Android 4.4以上
+- Android Studio Arctic Fox 2020.3.1以上
+- JDK 11
+
 ## Usage
 詳細は[Wiki](https://github.com/fan-ADN/nendSDK-Android-MoPub-CustomEvent/wiki)をご確認ください。
